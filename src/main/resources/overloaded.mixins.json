@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "net.diamonddev.overloaded.mixin",
   "compatibilityLevel": "JAVA_17",
-  "server": [
+  "mixins": [
     "EnchantCommandMixin",
     "EnchantmentHelperMixin"
   ],

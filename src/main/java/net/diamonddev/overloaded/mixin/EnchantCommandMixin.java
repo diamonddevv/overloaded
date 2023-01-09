@@ -1,8 +1,7 @@
 package net.diamonddev.overloaded.mixin;
 
-import net.diamonddev.overloaded.OverloadedServer;
+import net.diamonddev.overloaded.Overloaded;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.EnchantCommand;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,6 +30,6 @@ public class EnchantCommandMixin {
             )
     )
     private static void overloaded$redirectEnchanting(ItemStack instance, Enchantment enchantment, int level) {
-        OverloadedServer.putEnchantment(instance, new EnchantmentLevelEntry(enchantment, level));
+        Overloaded.forceAddEnchantment(instance, enchantment, level);
     }
 }

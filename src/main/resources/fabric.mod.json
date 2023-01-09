@@ -18,8 +18,8 @@
 
   "environment": "*",
   "entrypoints": {
-    "server": [
-      "net.diamonddev.overloaded.OverloadedServer"
+    "main": [
+      "net.diamonddev.overloaded.Overloaded"
     ]
   },
   "mixins": [
