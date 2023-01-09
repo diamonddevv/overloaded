@@ -1,38 +1,35 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "overloaded",
   "version": "${version}",
 
-  "name": "DiamondDev Template Mod",
-  "description": "bottom text",
+  "name": "OVERLOADED",
+  "description": "overload enchantments past their intended limit",
   "authors": [
     "DiamondDev"
   ],
   "contact": {
-    "homepage": "https://github.com/diamonddevv/",
-    "sources": "https://github.com/diamonddevv/diamonddev-template-mod"
+    "homepage": "https://diamonddevv.github.io/",
+    "sources": "https://github.com/diamonddevv/overloaded"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/overloaded/icon.png",
 
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "net.diamonddev.template.TemplateMod"
+    "server": [
+      "net.diamonddev.overloaded.OverloadedServer"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "overloaded.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.14.6",
     "fabric": "*",
-    "minecraft": "~1.19",
+    "minecraft": ">=1.19",
     "java": ">=17"
-  },
-  "suggests": {
-
   }
 }
