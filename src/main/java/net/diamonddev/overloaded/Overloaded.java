@@ -1,6 +1,7 @@
 package net.diamonddev.overloaded;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,11 @@ public class Overloaded implements ModInitializer {
     public void onInitialize() {
         long start = System.currentTimeMillis();
         //
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            // Register Commands Here
+            OverloadCommand.register(dispatcher);
+        });
 
         //
         long initTime = System.currentTimeMillis() - start;
