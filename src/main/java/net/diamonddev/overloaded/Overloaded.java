@@ -22,7 +22,7 @@ public class Overloaded implements ModInitializer {
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             // Register Commands Here
-            OverloadCommand.register(dispatcher);
+            OverloadCommand.register(dispatcher, registryAccess);
         });
 
         //

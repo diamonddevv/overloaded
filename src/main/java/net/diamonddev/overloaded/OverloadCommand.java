@@ -5,13 +5,15 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
-import net.diamonddev.overloaded.Overloaded;
-import net.minecraft.command.argument.EnchantmentArgumentType;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.argument.RegistryEntryArgumentType;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
@@ -33,11 +35,11 @@ public class OverloadCommand {
     });
 
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess) {
         dispatcher.register(literal("overload").requires((source) -> source.hasPermissionLevel(2))
 
                 .then(argument(TARGET_ARG, EntityArgumentType.entities())
-                        .then(argument(ENCH_ARG, EnchantmentArgumentType.enchantment())
+                        .then(argument(ENCH_ARG, RegistryEntryArgumentType.registryEntry(registryAccess, RegistryKeys.ENCHANTMENT))
                                 .executes(context -> execute(context, 1))
 
                                 .then(CommandManager.argument(LVL_ARG, IntegerArgumentType.integer())
@@ -47,7 +49,7 @@ public class OverloadCommand {
 
 
     private static int execute(CommandContext<ServerCommandSource> context, int lvl) throws CommandSyntaxException {
-        Enchantment e = EnchantmentArgumentType.getEnchantment(context, ENCH_ARG);
+        Enchantment e = RegistryEntryArgumentType.getEnchantment(context, ENCH_ARG).value();
         Collection<? extends Entity> targets = EntityArgumentType.getEntities(context, TARGET_ARG);
 
         for (Entity entity : targets)  {
