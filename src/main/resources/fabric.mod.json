@@ -15,11 +15,13 @@
 
   "license": "CC0-1.0",
   "icon": "assets/overloaded/icon.png",
+  "accessWidener": "overloaded.accesswidener",
 
   "environment": "*",
+
   "entrypoints": {
     "main": [
-      "net.diamonddev.overloaded.Overloaded"
+      "dev.diamond.overloaded.Overloaded"
     ]
   },
   "mixins": [
